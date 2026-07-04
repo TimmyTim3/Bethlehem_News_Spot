@@ -71,7 +71,7 @@
 
                     <p>{{ article.summary }}</p>
 
-                    <a href="#">Read More →</a>
+                    <a href="{{ url_for('articles.article', article_id=article.id) }}">Read More →</a>
 
                 </div>
 
