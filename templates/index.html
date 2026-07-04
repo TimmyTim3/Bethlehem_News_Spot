@@ -57,7 +57,7 @@
 
         <div class="card-grid">
 
-            {% for i in range(8) %}
+            {% for article in articles %}
 
             <article class="news-card">
 
@@ -65,13 +65,11 @@
 
                 <div class="card-content">
 
-                    <span class="category">LOCAL NEWS</span>
+                    <span class="category">{{ article.category }}</span>
 
-                    <h3>Sample News Headline Goes Here</h3>
+                    <h3>{{ article.title }}</h3>
 
-                    <p>
-                        This article summary will automatically come from your database later.
-                    </p>
+                    <p>{{ article.summary }}</p>
 
                     <a href="#">Read More →</a>
 
