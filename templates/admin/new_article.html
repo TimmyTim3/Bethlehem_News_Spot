@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}New Article{% endblock %}
+
+{% block content %}
+
+<div class="container mt-5">
+
+<h1>Publish Article</h1>
+
+<form>
+
+<p>{{ form.title.label }}</p>
+{{ form.title }}
+
+<p>{{ form.summary.label }}</p>
+{{ form.summary }}
+
+<p>{{ form.content.label }}</p>
+{{ form.content }}
+
+<p>{{ form.category.label }}</p>
+{{ form.category }}
+
+<p>{{ form.author.label }}</p>
+{{ form.author }}
+
+<p>{{ form.breaking }} Breaking News</p>
+
+<p>{{ form.featured }} Featured</p>
+
+<p>{{ form.submit }}</p>
+
+</form>
+
+</div>
+
+{% endblock %}
