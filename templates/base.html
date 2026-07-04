@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Bethlehem News Spot{% endblock %}</title>
+
+    <!-- Main Styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <!-- Top Bar -->
+        <div class="top-bar">
+
+            <div class="logo">
+
+                <img src="{{ url_for('static', filename='images/logo.png') }}"
+                     alt="Bethlehem News Spot">
+
+            </div>
+
+            <div class="search-box">
+
+                <input type="text"
+                       placeholder="Search news...">
+
+                <button>
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Navigation -->
+
+        <nav>
+
+            <a href="/">Home</a>
+
+            <a href="/news">News</a>
+
+            <a href="/crime">Crime</a>
+
+            <a href="/politics">Politics</a>
+
+            <a href="/business">Business</a>
+
+            <a href="/education">Education</a>
+
+            <a href="/sports">Sports</a>
+
+            <a href="/health">Health</a>
+
+            <a href="/weather">Weather</a>
+
+            <a href="/contact">Contact</a>
+
+        </nav>
+
+    </header>
+
+    <!-- Breaking News -->
+
+    <section class="breaking-news">
+
+        <span>BREAKING</span>
+
+        <marquee>
+
+            Welcome to Bethlehem News Spot • Local News • Crime • Weather • Community • Sports • Politics
+
+        </marquee>
+
+    </section>
+
+    <!-- Main Content -->
+
+    <main>
+
+        {% block content %}
+
+        {% endblock %}
+
+    </main>
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+
+            © 2026 Bethlehem News Spot | All Rights Reserved
+
+        </p>
+
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block title %}Bethlehem News Spot{% endblock %}
+
+{% block content %}
+
+<!-- ================= TOP STORIES ================= -->
+
+<section class="top-news">
+
+    <div class="main-story">
+
+        <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Main Story">
+
+        <div class="story-overlay">
+
+            <span class="breaking-tag">BREAKING NEWS</span>
+
+            <h1>Bethlehem's Trusted Source for Local News</h1>
+
+            <p>Live updates from Bethlehem and surrounding communities.</p>
+
+            <a href="/news" class="btn">Read Story</a>
+
+        </div>
+
+    </div>
+
+    <div class="side-stories">
+
+        <div class="side-card">
+            <img src="{{ url_for('static', filename='images/news1.jpg') }}">
+            <h3>Community Safety Meeting Tonight</h3>
+        </div>
+
+        <div class="side-card">
+            <img src="{{ url_for('static', filename='images/news2.jpg') }}">
+            <h3>Weather Alert Issued</h3>
+        </div>
+
+        <div class="side-card">
+            <img src="{{ url_for('static', filename='images/news3.jpg') }}">
+            <h3>High School Sports Results</h3>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ================= CONTENT ================= -->
+
+<section class="homepage">
+
+    <div class="content">
+
+        <h2 class="section-title">Latest News</h2>
+
+        <div class="card-grid">
+
+            {% for i in range(8) %}
+
+            <article class="news-card">
+
+                <img src="{{ url_for('static', filename='images/news.jpg') }}">
+
+                <div class="card-content">
+
+                    <span class="category">LOCAL NEWS</span>
+
+                    <h3>Sample News Headline Goes Here</h3>
+
+                    <p>
+                        This article summary will automatically come from your database later.
+                    </p>
+
+                    <a href="#">Read More →</a>
+
+                </div>
+
+            </article>
+
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+    <aside class="sidebar">
+
+        <div class="widget">
+
+            <h3>🔥 Most Read Today</h3>
+
+            <ul>
+
+                <li>Major Accident Near Bethlehem CBD</li>
+
+                <li>Weather Warning Issued</li>
+
+                <li>Local Football Finals</li>
+
+                <li>School Announces Closures</li>
+
+                <li>Business Expansion Creates Jobs</li>
+
+            </ul>
+
+        </div>
+
+        <div class="widget">
+
+            <h3>🌦 Weather</h3>
+
+            <h1>18°C</h1>
+
+            <p>Partly Cloudy</p>
+
+        </div>
+
+        <div class="widget">
+
+            <h3>📩 Newsletter</h3>
+
+            <input type="email" placeholder="Email Address">
+
+            <button>Subscribe</button>
+
+        </div>
+
+    </aside>
+
+</section>
+
+{% endblock %}
