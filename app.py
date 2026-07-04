@@ -1,3 +1,4 @@
+from routes.articles import articles_bp
 from routes.admin import admin_bp
 from flask import Flask
 from config import Config
@@ -8,6 +9,8 @@ app = Flask(__name__)
 app.config.from_object(Config)
 
 db.init_app(app)
+
+app.register_blueprint(articles_bp)
 
 app.register_blueprint(admin_bp)
 

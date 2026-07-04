@@ -1,13 +1,38 @@
+from services.article_service import (
+    create_article,
+    get_article_by_id,
+    update_article,
+)
 from flask import redirect, url_for
 from services.article_service import create_article
 from forms.article_form import ArticleForm
 from flask import Blueprint, render_template
+from flask import Blueprint, render_template, redirect, url_for, abort
 
 admin_bp = Blueprint(
     "admin",
     __name__,
     url_prefix="/admin"
 )
+
+@admin_bp.route("/edit/<int:article_id>", methods=["GET", "POST"])
+def edit_article(article_id):
+
+    article = get_article_by_id(article_id)
+
+    if article is None:
+        abort(404)
+
+    form = ArticleForm(obj=article)
+
+    if form.validate_on_submit():
+        update_article(article, form)
+        return redirect(url_for("articles.article", article_id=article.id))
+
+    return render_template(
+        "admin/new_article.html",
+        form=form
+    )
 
 @admin_bp.route("/new", methods=["GET", "POST"])
 def new_article():

@@ -1,5 +1,8 @@
 from models.article import Article
 
+def get_article_by_id(article_id):
+    return Article.query.get(article_id)
+
 
 def get_all_articles():
     return Article.query.order_by(Article.created_at.desc()).all()
@@ -36,6 +39,19 @@ def create_article(form):
     )
 
     db.session.add(article)
+    db.session.commit()
+
+    return article
+
+def update_article(article, form):
+    article.title = form.title.data
+    article.summary = form.summary.data
+    article.content = form.content.data
+    article.category = form.category.data
+    article.author = form.author.data
+    article.breaking = form.breaking.data
+    article.featured = form.featured.data
+
     db.session.commit()
 
     return article
