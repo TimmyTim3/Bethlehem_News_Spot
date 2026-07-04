@@ -1,7 +1,11 @@
-from flask import redirect, url_for
-from services.article_service import create_article
+from flask import Blueprint, render_template, redirect, url_for
+
 from forms.article_form import ArticleForm
-from flask import Blueprint, render_template
+
+from services.article_service import (
+    create_article,
+    get_all_articles_admin,
+)
 
 admin_bp = Blueprint(
     "admin",
@@ -25,3 +29,13 @@ def new_article():
 @admin_bp.route("/")
 def dashboard():
     return render_template("admin/dashboard.html")
+
+@admin_bp.route("/articles")
+def list_articles():
+
+    articles = get_all_articles_admin()
+
+    return render_template(
+        "admin/articles.html",
+        articles=articles
+    )
