@@ -8,8 +8,8 @@
 
 <h1>Publish Article</h1>
 
-<form>
-
+<form method="POST">
+{{ form.hidden_tag() }}
 <p>{{ form.title.label }}</p>
 {{ form.title }}
 
