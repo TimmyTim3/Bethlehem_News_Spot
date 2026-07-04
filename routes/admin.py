@@ -1,3 +1,9 @@
+from services.article_service import (
+    create_article,
+    get_article_by_id,
+    update_article,
+    delete_article,
+)
 from flask import redirect, url_for
 from services.article_service import create_article
 from forms.article_form import ArticleForm
@@ -8,6 +14,17 @@ admin_bp = Blueprint(
     __name__,
     url_prefix="/admin"
 )
+
+@admin_bp.route("/delete/<int:article_id>", methods=["POST"])
+def delete_article_route(article_id):
+    article = get_article_by_id(article_id)
+
+    if article is None:
+        abort(404)
+
+    delete_article(article)
+
+    return redirect(url_for("home.index"))
 
 @admin_bp.route("/new", methods=["GET", "POST"])
 def new_article():

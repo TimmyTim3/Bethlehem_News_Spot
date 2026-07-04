@@ -1,3 +1,4 @@
+from models import db
 from models.article import Article
 
 
@@ -20,8 +21,9 @@ def get_breaking_articles():
         .all()
     )
 
-from models import db
-from models.article import Article
+
+def get_article_by_id(article_id):
+    return Article.query.get(article_id)
 
 
 def create_article(form):
@@ -39,3 +41,22 @@ def create_article(form):
     db.session.commit()
 
     return article
+
+
+def update_article(article, form):
+    article.title = form.title.data
+    article.summary = form.summary.data
+    article.content = form.content.data
+    article.category = form.category.data
+    article.author = form.author.data
+    article.breaking = form.breaking.data
+    article.featured = form.featured.data
+
+    db.session.commit()
+
+    return article
+
+
+def delete_article(article):
+    db.session.delete(article)
+    db.session.commit()
