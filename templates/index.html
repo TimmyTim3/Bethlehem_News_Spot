@@ -120,23 +120,33 @@
 
         <div class="widget">
 
-            <h3>🔥 Most Read Today</h3>
+    <h3>🔥 Most Read Today</h3>
 
-            <ul>
+    <ul>
 
-                <li>Major Accident Near Bethlehem CBD</li>
+    {% for article in most_read_articles %}
 
-                <li>Weather Warning Issued</li>
+        <li>
 
-                <li>Local Football Finals</li>
+            <a href="{{ url_for('articles.article', article_id=article.id) }}">
 
-                <li>School Announces Closures</li>
+                {{ article.title }}
 
-                <li>Business Expansion Creates Jobs</li>
+            </a>
 
-            </ul>
+            <small>
 
-        </div>
+                👁 {{ article.views }}
+
+            </small>
+
+        </li>
+
+    {% endfor %}
+
+    </ul>
+
+</div>
 
         <div class="widget">
 

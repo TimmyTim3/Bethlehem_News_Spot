@@ -112,3 +112,12 @@ def increase_views(article):
     article.views += 1
 
     db.session.commit()
+
+def get_most_read_articles(limit=5):
+
+    return (
+        Article.query
+        .order_by(Article.views.desc())
+        .limit(limit)
+        .all()
+    )
