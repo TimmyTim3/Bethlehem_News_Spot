@@ -161,3 +161,20 @@ font-size:28px;
 .news-card a:hover{
     letter-spacing:.5px;
 }
+
+.category{
+    display:inline-block;
+    background:#0d47a1;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:50px;
+    font-size:12px;
+    font-weight:700;
+    letter-spacing:.5px;
+    text-transform:uppercase;
+    margin-bottom:12px;
+}
+
+.category a{
+    color:white;
+}
