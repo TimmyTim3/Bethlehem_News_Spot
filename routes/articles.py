@@ -1,7 +1,9 @@
-from flask import Blueprint, render_template, abort
+from flask import Blueprint, render_template
 
-from services.article_service import get_article_by_id
-
+from services.article_service import (
+    get_article_by_id,
+    get_articles_by_category,
+)
 articles_bp = Blueprint(
     "articles",
     __name__
@@ -19,4 +21,15 @@ def article(article_id):
     return render_template(
         "article.html",
         article=article
+    )
+
+
+@articles_bp.route("/category/<category>")
+def category(category):
+    articles = get_articles_by_category(category)
+
+    return render_template(
+        "category.html",
+        category=category,
+        articles=articles,
     )

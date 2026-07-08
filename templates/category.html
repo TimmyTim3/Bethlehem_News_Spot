@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}
+{{ category }} News
+{% endblock %}
+
+{% block content %}
+
+<h1>{{ category }}</h1>
+
+{% if articles %}
+
+    {% for article in articles %}
+
+        <div class="news-card">
+
+            <h2>{{ article.title }}</h2>
+
+            <p>{{ article.summary }}</p>
+
+            <a href="{{ url_for('articles.article', article_id=article.id) }}">
+                Read More
+            </a>
+
+        </div>
+
+    {% endfor %}
+
+{% else %}
+
+<p>No articles found in this category.</p>
+
+{% endif %}
+
+{% endblock %}

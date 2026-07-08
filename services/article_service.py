@@ -34,6 +34,14 @@ def get_article_by_id(article_id):
     return db.session.get(Article, article_id)
 
 
+def get_articles_by_category(category):
+    return (
+        Article.query
+        .filter_by(category=category)
+        .order_by(Article.created_at.desc())
+        .all()
+    )
+
 # -------------------------
 # CREATE
 # -------------------------

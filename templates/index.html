@@ -65,7 +65,7 @@
 
                 <div class="card-content">
 
-                    <span class="category">{{ article.category }}</span>
+<span class="category"><a href="{{ url_for('articles.category', category=article.category) }}">{{ article.category }}</a></span>
 
                     <h3>{{ article.title }}</h3>
 
