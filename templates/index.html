@@ -4,27 +4,51 @@
 
 {% block content %}
 
+<div class="breaking-news">
+
+{% for article in breaking_articles %}
+
+<a href="{{ url_for('articles.article', article_id=article.id) }}">
+
+🚨 {{ article.title }}
+
+</a>
+
+{% endfor %}
+
+</div>
+
 <!-- ================= TOP STORIES ================= -->
 
 <section class="top-news">
 
+    {% if featured_articles %}
+
+    {% set featured = featured_articles[0] %}
+
     <div class="main-story">
 
-        <img src="{{ url_for('static', filename='images/hero.jpg') }}" alt="Main Story">
+        <img src="{{ url_for('static', filename='images/hero.jpg') }}">
 
         <div class="story-overlay">
 
-            <span class="breaking-tag">BREAKING NEWS</span>
+            <span class="breaking-tag">
+                ⭐ FEATURED
+            </span>
 
-            <h1>Bethlehem's Trusted Source for Local News</h1>
+            <h1>{{ featured.title }}</h1>
 
-            <p>Live updates from Bethlehem and surrounding communities.</p>
+            <p>{{ featured.summary }}</p>
 
-            <a href="/news" class="btn">Read Story</a>
+            <a href="{{ url_for('articles.article', article_id=featured.id) }}">
+                Read Story
+            </a>
 
         </div>
 
     </div>
+
+{% endif %}
 
     <div class="side-stories">
 
