@@ -1,3 +1,4 @@
+import os
 from sqlalchemy import or_
 from models import db
 from models.article import Article
@@ -112,6 +113,18 @@ def update_article(article, form):
 # -------------------------
 
 def delete_article(article):
+
+    if article.image:
+
+        image_path = os.path.join(
+            "static",
+            "uploads",
+            article.image
+        )
+
+        if os.path.exists(image_path):
+            os.remove(image_path)
+
     db.session.delete(article)
     db.session.commit()
 
