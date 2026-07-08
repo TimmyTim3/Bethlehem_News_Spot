@@ -4,6 +4,10 @@
 
 {% block content %}
 
+<h1 style="background:red;color:white;text-align:center;">
+TEST TEMPLATE
+</h1>
+
 <div class="breaking-news">
 
 <h2> BREAKING NEWS</h2>
@@ -30,13 +34,17 @@
 
     <div class="main-story">
 
-        <img src="{{ url_for('static', filename='images/hero.jpg') }}">
+        {% if featured.image %}
+            <img src="{{ url_for('static', filename='uploads/' + featured.image) }}">
+        {% else %}
+            <img src="{{ url_for('static', filename='images/default-article.jpg') }}">
+        {% endif %}
 
         <div class="story-overlay">
 
-            <span class="breaking-tag">
-                BREAKING NEWS
-            </span>
+            <div class="breaking-tag">
+                FEATURED
+            </div>
 
             <h1>{{ featured.title }}</h1>
 
@@ -50,24 +58,29 @@
 
     </div>
 
-{% endif %}
+    {% endif %}
 
     <div class="side-stories">
 
-        <div class="side-card">
-            <img src="{{ url_for('static', filename='images/news1.jpg') }}">
-            <h3>Community Safety Meeting Tonight</h3>
-        </div>
+        {% for article in side_articles %}
 
         <div class="side-card">
-            <img src="{{ url_for('static', filename='images/news2.jpg') }}">
-            <h3>Weather Alert Issued</h3>
+
+            {% if article.image %}
+                <img src="{{ url_for('static', filename='uploads/' + article.image) }}">
+            {% else %}
+                <img src="{{ url_for('static', filename='images/default-article.jpg') }}">
+            {% endif %}
+
+            <h3>{{ article.title }}</h3>
+
+            <a href="{{ url_for('articles.article', article_id=article.id) }}">
+                Read Story
+            </a>
+
         </div>
 
-        <div class="side-card">
-            <img src="{{ url_for('static', filename='images/news3.jpg') }}">
-            <h3>High School Sports Results</h3>
-        </div>
+        {% endfor %}
 
     </div>
 

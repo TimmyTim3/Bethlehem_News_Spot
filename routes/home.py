@@ -4,6 +4,8 @@ from flask import (
     request,
 )
 
+from models.article import Article
+
 from services.article_service import (
     get_all_articles,
     get_featured_articles,
@@ -19,6 +21,13 @@ def index():
 
     articles = get_all_articles(page=page)
     featured_articles = get_featured_articles()
+    side_articles = (
+    Article.query
+    .filter_by(published=True)
+    .order_by(Article.id.desc())
+    .limit(3)
+    .all()
+)
     breaking_articles = get_breaking_articles()
     most_read_articles = get_most_read_articles()
 
@@ -26,6 +35,7 @@ def index():
         "index.html",
         articles=articles,
         featured_articles=featured_articles,
+        side_articles=side_articles,
         breaking_articles=breaking_articles,
         most_read_articles=most_read_articles,
     )

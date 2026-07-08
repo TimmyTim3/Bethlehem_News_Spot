@@ -7,12 +7,14 @@
 }
 
 .breaking-news h2{
-    background:#c40000;
-    color:white;
-    padding:12px 18px;
-    border-radius:8px;
     display:inline-block;
-    font-size:24px;
+    background:#c40000;
+    color:#fff;
+    font-size:16px;
+    font-weight:700;
+    padding:6px 12px;
+    border-radius:4px;
+    margin-bottom:10px;
 }
 
 .news-grid{
