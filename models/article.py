@@ -18,6 +18,11 @@ class Article(db.Model):
 
     image = db.Column(db.String(255))
 
+    published = db.Column(
+    db.Boolean,
+    default=False
+)
+
     breaking = db.Column(db.Boolean, default=False)
 
     featured = db.Column(db.Boolean, default=False)
