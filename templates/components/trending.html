@@ -1,0 +1,34 @@
+<section class="trending-section">
+
+    <div class="section-header">
+        <h2>🔥 Trending Now</h2>
+    </div>
+
+    <div class="trending-grid">
+
+        {% for article in most_read_articles[:4] %}
+
+        <a class="trend-card"
+           href="{{ url_for('articles.article', article_id=article.id) }}">
+
+            <span class="trend-number">
+                {{ loop.index }}
+            </span>
+
+            <div>
+
+                <h4>{{ article.title }}</h4>
+
+                <small>
+                    👁 {{ article.views }} Views
+                </small>
+
+            </div>
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</section>
