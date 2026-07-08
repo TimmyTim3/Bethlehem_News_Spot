@@ -81,8 +81,7 @@
 
         <div class="card-grid">
 
-            {% for article in articles %}
-
+{% for article in articles.items %}
             <article class="news-card">
 
 {% if article.image %}
@@ -171,5 +170,35 @@
     </aside>
 
 </section>
+<hr>
 
+<div class="pagination">
+
+{% if articles.has_prev %}
+
+<a href="{{ url_for('home.index', page=articles.prev_num) }}">
+
+⬅ Previous
+
+</a>
+
+{% endif %}
+
+<span>
+
+Page {{ articles.page }} of {{ articles.pages }}
+
+</span>
+
+{% if articles.has_next %}
+
+<a href="{{ url_for('home.index', page=articles.next_num) }}">
+
+Next ➡
+
+</a>
+
+{% endif %}
+
+</div>
 {% endblock %}

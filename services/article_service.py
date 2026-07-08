@@ -23,9 +23,17 @@ def search_articles(search_term):
     )
 
 
-def get_all_articles():
-    return Article.query.order_by(Article.created_at.desc()).all()
+def get_all_articles(page=1, per_page=6):
 
+    return (
+        Article.query
+        .order_by(Article.created_at.desc())
+        .paginate(
+            page=page,
+            per_page=per_page,
+            error_out=False,
+        )
+    )
 
 def get_all_articles_admin():
     return Article.query.order_by(Article.created_at.desc()).all()
