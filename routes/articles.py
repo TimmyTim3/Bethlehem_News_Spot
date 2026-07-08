@@ -10,6 +10,7 @@ from services.article_service import (
     get_articles_by_category,
     search_articles,
     increase_views,
+    get_related_articles,
 )
 
 articles_bp = Blueprint(
@@ -22,16 +23,18 @@ articles_bp = Blueprint(
 def article(article_id):
 
     article = get_article_by_id(article_id)
-    increase_views(article)
 
     if article is None:
         abort(404)
 
     increase_views(article)
 
+    related_articles = get_related_articles(article)
+
     return render_template(
         "article.html",
-        article=article
+        article=article,
+        related_articles=related_articles,
     )
 
 

@@ -121,3 +121,15 @@ def get_most_read_articles(limit=5):
         .limit(limit)
         .all()
     )
+
+def get_related_articles(article, limit=3):
+
+    return (
+        Article.query
+        .filter(
+            Article.category == article.category,
+            Article.id != article.id
+        )
+        .limit(limit)
+        .all()
+    )
