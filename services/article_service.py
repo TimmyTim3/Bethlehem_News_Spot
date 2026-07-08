@@ -63,9 +63,10 @@ def get_articles_by_category(category):
 # CREATE
 # -------------------------
 
-def create_article(form):
+def create_article(form, filename=None):
     article = Article(
         title=form.title.data,
+        image=filename,
         summary=form.summary.data,
         content=form.content.data,
         category=form.category.data,

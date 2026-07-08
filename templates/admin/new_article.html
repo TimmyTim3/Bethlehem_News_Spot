@@ -8,7 +8,7 @@
 
 <h1>Publish Article</h1>
 
-<form method="POST">
+<form method="POST" enctype="multipart/form-data">
 {{ form.hidden_tag() }}
 <p>{{ form.title.label }}</p>
 {{ form.title }}
@@ -28,6 +28,14 @@
 <p>{{ form.breaking }} Breaking News</p>
 
 <p>{{ form.featured }} Featured</p>
+
+<p>
+
+{{ form.image.label }}
+
+{{ form.image() }}
+
+</p>
 
 <p>{{ form.submit }}</p>
 

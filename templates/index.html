@@ -85,7 +85,11 @@
 
             <article class="news-card">
 
-                <img src="{{ url_for('static', filename='images/news.jpg') }}">
+{% if article.image %}
+    <img src="{{ url_for('static', filename='uploads/' + article.image) }}" alt="{{ article.title }}">
+{% else %}
+    <img src="{{ url_for('static', filename='images/news.jpg') }}" alt="Placeholder">
+{% endif %}
 
                 <div class="card-content">
 

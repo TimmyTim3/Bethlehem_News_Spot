@@ -1,7 +1,8 @@
+import os
+from werkzeug.utils import secure_filename
+from flask import current_app
 from flask import Blueprint, render_template, redirect, url_for
-
 from forms.article_form import ArticleForm
-
 from services.article_service import (
     create_article,
     get_all_articles_admin,
@@ -15,10 +16,26 @@ admin_bp = Blueprint(
 
 @admin_bp.route("/new", methods=["GET", "POST"])
 def new_article():
+
     form = ArticleForm()
 
+    filename = None
+
+    if form.image.data:
+
+        image = form.image.data
+
+        filename = secure_filename(image.filename)
+
+        image.save(
+            os.path.join(
+                current_app.config["UPLOAD_FOLDER"],
+                filename,
+            )
+        )
+
     if form.validate_on_submit():
-        create_article(form)
+        create_article(form, filename)
         return redirect(url_for("home.index"))
 
     return render_template(
