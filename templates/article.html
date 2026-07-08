@@ -8,6 +8,12 @@
 
 <h1>{{ article.title }}</h1>
 
+<p>
+
+👁 {{ article.views }} Views
+
+</p>
+
 <p><strong>Category:</strong> <a href="{{ url_for('articles.category', category=article.category) }}">{{ article.category }}</a></p>
 
 <p><strong>Author:</strong> {{ article.author }}</p>

@@ -106,3 +106,9 @@ def update_article(article, form):
 def delete_article(article):
     db.session.delete(article)
     db.session.commit()
+
+def increase_views(article):
+
+    article.views += 1
+
+    db.session.commit()

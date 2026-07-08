@@ -99,6 +99,11 @@
 
                     <p>{{ article.summary }}</p>
 
+<p>
+
+👁 {{ article.views }} views
+
+</p>
                     <a href="{{ url_for('articles.article', article_id=article.id) }}">Read More →</a>
 
                 </div>

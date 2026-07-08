@@ -1,9 +1,15 @@
-from flask import Blueprint, render_template, request
+from flask import (
+    Blueprint,
+    render_template,
+    request,
+    abort,
+)
 
 from services.article_service import (
     get_article_by_id,
     get_articles_by_category,
     search_articles,
+    increase_views,
 )
 
 articles_bp = Blueprint(
@@ -16,9 +22,12 @@ articles_bp = Blueprint(
 def article(article_id):
 
     article = get_article_by_id(article_id)
+    increase_views(article)
 
     if article is None:
         abort(404)
+
+    increase_views(article)
 
     return render_template(
         "article.html",
