@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+Search Results
+{% endblock %}
+
+{% block content %}
+
+<h1>Search Results</h1>
+
+<p>
+Results for:
+<strong>{{ search_term }}</strong>
+</p>
+
+{% if articles %}
+
+    {% for article in articles %}
+
+        <div class="news-card">
+
+            <h2>{{ article.title }}</h2>
+
+            <p>{{ article.summary }}</p>
+
+            <a href="{{ url_for('articles.article', article_id=article.id) }}">
+                Read More
+            </a>
+
+        </div>
+
+    {% endfor %}
+
+{% else %}
+
+<p>No matching articles found.</p>
+
+{% endif %}
+
+{% endblock %}

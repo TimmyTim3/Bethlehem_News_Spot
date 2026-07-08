@@ -34,8 +34,19 @@
 
             <div class="search-box">
 
-                <input type="text"
-                       placeholder="Search news...">
+<form action="{{ url_for('articles.search') }}" method="GET">
+
+    <input
+        type="text"
+        name="q"
+        placeholder="Search news..."
+    >
+
+    <button type="submit">
+        Search
+    </button>
+
+</form>                       placeholder="Search news...">
 
                 <button>
 

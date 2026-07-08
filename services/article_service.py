@@ -1,3 +1,4 @@
+from sqlalchemy import or_
 from models import db
 from models.article import Article
 
@@ -5,6 +6,22 @@ from models.article import Article
 # -------------------------
 # READ
 # -------------------------
+
+def search_articles(search_term):
+    return (
+        Article.query.filter(
+            or_(
+                Article.title.ilike(f"%{search_term}%"),
+                Article.summary.ilike(f"%{search_term}%"),
+                Article.content.ilike(f"%{search_term}%"),
+                Article.category.ilike(f"%{search_term}%"),
+                Article.author.ilike(f"%{search_term}%"),
+            )
+        )
+        .order_by(Article.created_at.desc())
+        .all()
+    )
+
 
 def get_all_articles():
     return Article.query.order_by(Article.created_at.desc()).all()
