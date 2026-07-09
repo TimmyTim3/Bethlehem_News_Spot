@@ -782,3 +782,16 @@ a{
 a:hover{
     text-decoration:underline;
 }
+
+.hero-category{
+    display:inline-block;
+    background:#0b2f6b;
+    color:#fff;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.5px;
+    margin-bottom:10px;
+}
