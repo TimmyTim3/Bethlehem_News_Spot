@@ -56,7 +56,11 @@ href="{{ url_for('static', filename='css/homepage.css') }}">
 
         <!-- Navigation -->
 
-        <nav>
+<button id="menu-toggle">
+    <i class="fa-solid fa-bars"></i>
+</button>
+
+        <nav id="main-nav">
 
             <a href="/">Home</a>
 
@@ -105,6 +109,8 @@ href="{{ url_for('static', filename='css/homepage.css') }}">
         </p>
 
     </footer>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
 
 </body>
 </html>

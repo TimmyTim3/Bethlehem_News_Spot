@@ -1,10 +1,7 @@
-{% extends "base.html" %}
-
-{% block title %}Bethlehem News Spot{% endblock %}
-
+{% extends "base.html" %}                                                                       
+{% block title %}Bethlehem News Spot{% endblock %}                                              
 {% block content %}
-
-<div class="breaking-news">
+                                                                                                <div class="breaking-news">
 
 <h2> BREAKING NEWS</h2>
 
@@ -14,86 +11,90 @@
 
 🚨 {{ article.title }}
 
-</a>
-
+</a>                                                                                            
 {% endfor %}
 
 </div>
+                                                                                                {% include "components/trending.html" %}
 
-<!-- ================= TOP STORIES ================= -->
-
-{% include "components/trending.html" %}
-
-<section class="top-news">
-
+<section class="hero-news">                                                                     
     {% if featured_articles %}
-
     {% set featured = featured_articles[0] %}
 
-    <div class="main-story">
+    <div class="hero-card">
 
         {% if featured.image %}
-            <img src="{{ url_for('static', filename='uploads/' + featured.image) }}">
+        <img src="{{ url_for('static', filename='uploads/' + featured.image) }}">
         {% else %}
-            <img src="{{ url_for('static', filename='images/default-article.jpg') }}">
+        <img src="{{ url_for('static', filename='images/default-article.jpg') }}">
         {% endif %}
+                                                                                                        <div class="hero-overlay">
 
-        <div class="story-overlay">
+            <span class="hero-tag">
+                TOP STORY
+            </span>
 
-            <div class="hero-category">
-    {{ featured.category }}
-</div>
-
-<div class="breaking-tag">
-    FEATURED
-</div>
-
-<h1>{{ featured.title }}</h1>
-
-            <div class="story-meta">
-    <span>🕒 Today</span>
-    <span>👁 {{ featured.views }} Views</span>
-</div>
+            <h1>{{ featured.title }}</h1>
 
             <p>{{ featured.summary }}</p>
 
-            <a href="{{ url_for('articles.article', article_id=featured.id) }}">
-                Read Story
-            </a>
+            <div class="hero-meta">
 
-        </div>
+                <span>📰 {{ featured.category }}</span>
 
-    </div>
+                {% if featured.created_at %}
+                <span>📅 {{ featured.created_at.strftime('%d %b %Y') }}</span>
+                {% endif %}
 
-    {% endif %}
+            </div>
 
-    <div class="side-stories">
+            <a class="hero-button"                                                                             href="{{ url_for('articles.article', article_id=featured.id) }}">                                Read Full Story →
+            </a>                                                                                
+        </div>                                                                                  
+    </div>                                                                                      
+    {% endif %}                                                                                 
+</section>
 
-        {% for article in side_articles %}
+<section class="editors-picks">
 
-        <div class="side-card">
+    <h2 class="section-title">
+        ⭐ Editor's Picks
+    </h2>
+
+    <div class="picks-grid">
+
+        {% for article in articles.items[:4] %}
+
+        <article class="pick-card">
 
             {% if article.image %}
-                <img src="{{ url_for('static', filename='uploads/' + article.image) }}">
+            <img src="{{ url_for('static', filename='uploads/' + article.image) }}">
             {% else %}
-                <img src="{{ url_for('static', filename='images/default-article.jpg') }}">
+            <img src="{{ url_for('static', filename='images/default-article.jpg') }}">
             {% endif %}
 
-            <h3>{{ article.title }}</h3>
+            <div class="pick-content">
 
-            <a href="{{ url_for('articles.article', article_id=article.id) }}">
-                Read Story
-            </a>
+                <span class="news-category">
+                    {{ article.category if article.category else "NEWS" }}
+                </span>
 
-        </div>
+                <h3>{{ article.title }}</h3>
+
+                <a class="read-more"
+                   href="{{ url_for('articles.article', article_id=article.id) }}">
+                    Read Story →
+                </a>
+
+            </div>
+
+        </article>
 
         {% endfor %}
 
     </div>
 
 </section>
-
-<!-- ================= CONTENT ================= -->
 
 <section class="homepage-layout">
 
@@ -102,36 +103,36 @@
         <h2 class="section-title">
             Latest News
         </h2>
+                                                                                                        <div class="news-grid">
 
-        <div class="news-grid">
-
-        {% for article in articles.items %}
-
+        {% for article in articles.items %}                                                     
             <article class="news-card">
 
                 {% if article.image %}
-                <img src="{{ url_for('static', filename='uploads/' + article.image) }}">
-                {% else %}
+                <img src="{{ url_for('static', filename='uploads/' + article.image) }}">                        {% else %}
                 <img src="{{ url_for('static', filename='images/default-article.jpg') }}">
                 {% endif %}
 
-                <div class="card-content">
+                <div class="news-content">
 
-                    <span class="category">
-                        {{ article.category }}
-                    </span>
+                    <span class="news-category">
+    {{ article.category if article.category else "NEWS" }}
+</span>
 
                     <h3>{{ article.title }}</h3>
 
                     <p>{{ article.summary }}</p>
 
-                    <div class="card-footer">
+                    <div class="news-meta">
 
-                        <span>👁 {{ article.views }}</span>
+                        <span>
+    👁 {{ article.views }} Views
+</span>
 
-                        <a href="{{ url_for('articles.article', article_id=article.id) }}">
-                            Read →
-                        </a>
+                        <a class="read-more"
+   href="{{ url_for('articles.article', article_id=article.id) }}">
+    Read Story →
+</a>
 
                     </div>
 
@@ -182,7 +183,7 @@
     </aside>
 
 </section>
-                
+
 <hr>
 
 <div class="pagination">
@@ -215,3 +216,4 @@ Next ➡
 
 </div>
 {% endblock %}
+
