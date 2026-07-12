@@ -11,3 +11,11 @@ nav.classList.toggle("show");
 });
 
 }
+
+function copyArticleLink() {
+
+    navigator.clipboard.writeText(window.location.href);
+
+    alert("Article link copied!");
+
+}
