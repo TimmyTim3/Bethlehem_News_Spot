@@ -6,53 +6,61 @@
 
 {% block content %}
 
-<h1>{{ article.title }}</h1>
+<article class="article-page">
 
-<p>
-<strong>By:</strong> {{ article.author }}
-</p>
+    <header class="article-header">
 
-<p>
-<strong>Category:</strong>
-<a href="{{ url_for('articles.category', category=article.category) }}">
-{{ article.category }}
-</a>
-</p>
+    <span class="news-category">
+        {{ article.category }}
+    </span>
 
-<p>
-👁 {{ article.views }} Views
-</p>
+    <h1 class="article-title">
+        {{ article.title }}
+    </h1>
 
-<hr>
+    <p class="article-summary">
+        {{ article.summary }}
+    </p>
 
-{% if article.image %}
+    <div class="article-info">
 
-<img
-src="{{ url_for('static', filename='uploads/' + article.image) }}"
-alt="{{ article.title }}"
-style="width:100%; max-height:500px; object-fit:cover; border-radius:8px;"
->
+        {% if article.created_at %}
+        <span>📅 {{ article.created_at.strftime('%d %b %Y') }}</span>
+        {% endif %}
 
-{% endif %}
+        <span>👁 {{ article.views }} Views</span>
 
-<h3>Summary</h3>
+    </div>
 
-<p>
-{{ article.summary }}
-</p>
+</header>
 
-<hr>
+    {% if article.image %}
 
-<div style="line-height:1.8; font-size:18px;">
+    <img
+        class="article-image"
+        src="{{ url_for('static', filename='uploads/' + article.image) }}"
+        alt="{{ article.title }}"
+    >
 
-{{ article.content|replace('\n','<br><br>')|safe }}
+    {% endif %}
 
-</div>
+    <div class="article-content">
 
-<hr>
+        {{ article.content|replace('\n','<br><br>')|safe }}
 
-<a href="{{ url_for('home.index') }}">
-← Back to Home
-</a>
+    </div>
+
+    <div class="article-footer">
+
+        <a class="back-home"
+        href="{{ url_for('home.index') }}">
+
+            ← Back to Home
+
+        </a>
+
+    </div>
+
+</article>
 
 {% endblock %}
