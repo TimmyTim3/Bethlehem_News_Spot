@@ -172,3 +172,99 @@ SHARE BUTTONS
 .copy-link{
     background:#666;
 }
+
+/* ==========================
+   ARTICLE REACTIONS
+========================== */
+
+.reaction-section{
+
+    margin-top:60px;
+
+    padding:35px;
+
+    background:#f7f8fc;
+
+    border-radius:20px;
+
+    text-align:center;
+
+}
+
+.reaction-section h2{
+
+    color:#123c82;
+
+    font-size:2rem;
+
+    margin-bottom:30px;
+
+}
+
+.reaction-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.reaction-btn{
+
+    background:white;
+
+    border:none;
+
+    border-radius:50px;
+
+    padding:18px 35px;
+
+    font-size:1.3rem;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.12);
+
+}
+
+.reaction-btn:hover{
+
+    transform:translateY(-4px);
+
+}
+
+.reaction-btn.active{
+
+    background:#dfefff;
+
+}
+
+.reaction-counts{
+
+    margin-top:30px;
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:40px;
+
+    flex-wrap:wrap;
+
+}
+
+.reaction-counts p{
+
+    font-size:1.2rem;
+
+    font-weight:bold;
+
+}

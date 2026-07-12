@@ -29,4 +29,9 @@ class Article(db.Model):
 
     views = db.Column(db.Integer, default=0)
 
+    # Article reactions
+    likes = db.Column(db.Integer, default=0)
+    loves = db.Column(db.Integer, default=0)
+    wows = db.Column(db.Integer, default=0)
+
     created_at = db.Column(db.DateTime, default=datetime.utcnow)

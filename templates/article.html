@@ -107,6 +107,44 @@
 
     </div>
 
+<div class="reaction-section">
+
+    <h2>What do you think?</h2>
+
+    <div class="reaction-buttons">
+
+        <button class="reaction-btn" data-reaction="like">
+            👍 Like
+        </button>
+
+        <button class="reaction-btn" data-reaction="love">
+            ❤️ Love
+        </button>
+
+        <button class="reaction-btn" data-reaction="wow">
+            😮 Wow
+        </button>
+
+    </div>
+
+    <div class="reaction-counts">
+
+        <p>
+            👍 <span id="like-count">{{ article.likes }}</span>
+        </p>
+
+        <p>
+            ❤️ <span id="love-count">{{ article.loves }}</span>
+        </p>
+
+        <p>
+            😮 <span id="wow-count">{{ article.wows }}</span>
+        </p>
+
+    </div>
+
+</div>
+
     <div class="article-footer">
 
         <a class="back-home"

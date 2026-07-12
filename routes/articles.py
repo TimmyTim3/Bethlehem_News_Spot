@@ -3,6 +3,7 @@ from flask import (
     render_template,
     request,
     abort,
+    jsonify,
 )
 
 from services.article_service import (
@@ -12,6 +13,8 @@ from services.article_service import (
     increase_views,
     get_related_articles,
 )
+
+from models import db
 
 articles_bp = Blueprint(
     "articles",
@@ -60,3 +63,33 @@ def search():
         search_term=search_term,
         articles=articles,
     )
+
+@articles_bp.route("/article/<int:article_id>/react", methods=["POST"])
+def react(article_id):
+
+    article = get_article_by_id(article_id)
+
+    if article is None:
+        return jsonify({"success": False})
+
+    data = request.get_json()
+
+    reaction = data.get("reaction")
+
+    if reaction == "like":
+        article.likes += 1
+
+    elif reaction == "love":
+        article.loves += 1
+
+    elif reaction == "wow":
+        article.wows += 1
+
+    db.session.commit()
+
+    return jsonify({
+        "success": True,
+        "likes": article.likes,
+        "loves": article.loves,
+        "wows": article.wows
+    })
