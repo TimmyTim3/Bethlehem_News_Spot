@@ -172,3 +172,69 @@ SHARE BUTTONS
 .copy-link{
     background:#666;
 }
+
+/* ==========================
+ARTICLE REACTIONS
+========================== */
+
+.article-reactions{
+    margin:40px 0;
+    padding:30px;
+    background:#f5f7fb;
+    border-radius:16px;
+}
+
+.article-reactions h3{
+    margin-bottom:25px;
+    color:#123c84;
+    font-size:1.5rem;
+    font-family:'Merriweather', serif;
+}
+
+.reaction-buttons{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:18px;
+    flex-wrap:wrap;
+}
+
+.reaction{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+
+    min-width:140px;
+    height:56px;
+
+    border:none;
+    border-radius:999px;
+
+    background:white;
+
+    font-size:18px;
+    font-weight:600;
+
+    cursor:pointer;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+    transition:.25s;
+}
+
+.reaction:hover{
+    transform:translateY(-3px);
+}
+
+.like:hover{
+    background:#e3f2fd;
+}
+
+.love:hover{
+    background:#ffebee;
+}
+
+.wow:hover{
+    background:#fff8e1;
+}
