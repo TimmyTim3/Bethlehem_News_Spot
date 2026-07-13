@@ -1,3 +1,4 @@
+from routes.submissions import submissions_bp
 from models.comment import Comment
 from routes.admin import admin_bp
 from flask import Flask
@@ -16,6 +17,8 @@ app.register_blueprint(admin_bp)
 app.register_blueprint(home_bp)
 
 app.register_blueprint(articles_bp)
+
+app.register_blueprint(submissions_bp)
 
 with app.app_context():
     db.create_all()

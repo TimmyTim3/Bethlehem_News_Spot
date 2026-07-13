@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Submit News{% endblock %}
+
+{% block content %}
+<div class="submit-page" style="max-width: 600px; margin: 40px auto; padding: 20px;">
+    <h1>Submit a News Story</h1>
+    <p>Have a story to share? Let the Bethlehem community know!</p>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}" style="padding: 10px; margin-bottom: 20px; background: #e0f7fa;">
+            {{ message }}
+          </div>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST" action="{{ url_for('submissions.submit_news') }}">
+        <div style="margin-bottom: 15px;">
+            <label>Your Name</label><br>
+            <input type="text" name="name" required style="width: 100%; padding: 8px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Your Email</label><br>
+            <input type="email" name="email" required style="width: 100%; padding: 8px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Headline</label><br>
+            <input type="text" name="headline" required style="width: 100%; padding: 8px;">
+        </div>
+        <div style="margin-bottom: 15px;">
+            <label>Story Content</label><br>
+            <textarea name="content" rows="10" required style="width: 100%; padding: 8px;"></textarea>
+        </div>
+        <button type="submit" style="padding: 10px 20px; background: #003366; color: white; border: none;">
+            Submit Story
+        </button>
+    </form>
+</div>
+{% endblock %}
