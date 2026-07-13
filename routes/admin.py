@@ -1,4 +1,6 @@
 import os
+from models.comment import Comment
+from services.comment_service import delete_comment
 from werkzeug.utils import secure_filename
 from flask import current_app
 from flask import Blueprint, render_template, redirect, url_for
@@ -13,6 +15,20 @@ admin_bp = Blueprint(
     __name__,
     url_prefix="/admin"
 )
+
+@admin_bp.route("/comments")
+def comments():
+
+    comments = (
+        Comment.query
+        .order_by(Comment.created_at.desc())
+        .all()
+    )
+
+    return render_template(
+        "admin/comments.html",
+        comments=comments,
+    )
 
 @admin_bp.route("/new", methods=["GET", "POST"])
 def new_article():

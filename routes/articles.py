@@ -4,7 +4,12 @@ from flask import (
     request,
     abort,
     jsonify,
+    flash,
+    redirect,
+    url_for,
 )
+
+from models import db
 
 from services.article_service import (
     get_article_by_id,
@@ -14,11 +19,16 @@ from services.article_service import (
     get_related_articles,
 )
 
-from models import db
-
 from services.comment_service import (
     get_comments_for_article,
     create_comment,
+)
+
+from services.reaction_service import get_reactions
+
+from services.moderation_service import (
+    contains_profanity,
+    is_spam,
 )
 
 articles_bp = Blueprint(
@@ -26,6 +36,10 @@ articles_bp = Blueprint(
     __name__,
 )
 
+
+# ==========================
+# VIEW ARTICLE
+# ==========================
 
 @articles_bp.route("/article/<int:article_id>")
 def article(article_id):
@@ -41,15 +55,24 @@ def article(article_id):
 
     comments = get_comments_for_article(article.id)
 
+    reactions = get_reactions(article.category)
+
     return render_template(
         "article.html",
         article=article,
         related_articles=related_articles,
+        comments=comments,
+        reactions=reactions,
     )
 
 
+# ==========================
+# CATEGORY
+# ==========================
+
 @articles_bp.route("/category/<category>")
 def category(category):
+
     articles = get_articles_by_category(category)
 
     return render_template(
@@ -57,6 +80,11 @@ def category(category):
         category=category,
         articles=articles,
     )
+
+
+# ==========================
+# SEARCH
+# ==========================
 
 @articles_bp.route("/search")
 def search():
@@ -66,11 +94,15 @@ def search():
     articles = search_articles(search_term)
 
     return render_template(
-    "article.html",
-    article=article,
-    related_articles=related_articles,
-    comments=comments,
-)
+        "search_results.html",
+        search_term=search_term,
+        articles=articles,
+    )
+
+
+# ==========================
+# REACTIONS
+# ==========================
 
 @articles_bp.route("/article/<int:article_id>/react", methods=["POST"])
 def react(article_id):
@@ -99,8 +131,13 @@ def react(article_id):
         "success": True,
         "likes": article.likes,
         "loves": article.loves,
-        "wows": article.wows
+        "wows": article.wows,
     })
+
+
+# ==========================
+# COMMENTS
+# ==========================
 
 @articles_bp.route("/article/<int:article_id>/comment", methods=["POST"])
 def add_comment(article_id):
@@ -114,6 +151,44 @@ def add_comment(article_id):
     content = request.form.get("content")
 
     if name and content:
-        create_comment(article_id, name, content)
 
-    return article(article_id)
+        if contains_profanity(content):
+
+            flash(
+                "Please keep discussions respectful.",
+                "danger",
+            )
+
+            return redirect(
+                url_for(
+                    "articles.article",
+                    article_id=article_id,
+                )
+            )
+
+        if is_spam(content):
+
+            flash(
+                "Spam detected.",
+                "danger",
+            )
+
+            return redirect(
+                url_for(
+                    "articles.article",
+                    article_id=article_id,
+                )
+            )
+
+        create_comment(
+            article_id,
+            name,
+            content,
+        )
+
+    return redirect(
+        url_for(
+            "articles.article",
+            article_id=article_id,
+        )
+    )

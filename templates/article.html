@@ -111,21 +111,19 @@
 
     <h2>What do you think?</h2>
 
-    <div class="reaction-buttons">
+    <div class="reaction-grid">
 
-        <button class="reaction-btn" data-reaction="like">
-            👍 Like
-        </button>
+{% for reaction in reactions %}
 
-        <button class="reaction-btn" data-reaction="love">
-            ❤️ Love
-        </button>
+<button class="meme-btn">
 
-        <button class="reaction-btn" data-reaction="wow">
-            😮 Wow
-        </button>
+{{ reaction }}
 
-    </div>
+</button>
+
+{% endfor %}
+
+</div>
 
     <div class="reaction-counts">
 

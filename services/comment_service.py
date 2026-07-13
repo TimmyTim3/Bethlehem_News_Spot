@@ -12,6 +12,7 @@ def get_comments_for_article(article_id):
 
 
 def create_comment(article_id, name, content):
+
     comment = Comment(
         article_id=article_id,
         name=name,
@@ -25,9 +26,11 @@ def create_comment(article_id, name, content):
 
 
 def count_comments(article_id):
-    return Comment.query.filter_by(
-        article_id=article_id
-    ).count()
+    return (
+        Comment.query
+        .filter_by(article_id=article_id)
+        .count()
+    )
 
 
 def delete_comment(comment):
