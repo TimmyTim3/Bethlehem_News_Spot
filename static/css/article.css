@@ -1,579 +1,173 @@
-/* ==========================
-   ARTICLE PAGE
-========================== */
-
-.article-container{
-    max-width:900px;
-    margin:auto;
-    padding:20px;
-}
-
-.article-page{
-    max-width:900px;
-    margin:40px auto;
-    padding:20px;
-}
-
-.article-image{
-    width:100%;
-    height:auto;
-    display:block;
-    border-radius:12px;
-    margin:25px 0;
-}
-
-.article-title{
-
-    font-family:'Merriweather',serif;
-
-    font-size:2.4rem;
-
-    line-height:1.25;
-
-    color:#111;
-
-    margin:15px 0;
-
-}
-
-.article-summary{
-
-    font-size:1.2rem;
-
-    color:#555;
-
-    margin-bottom:20px;
-
-    line-height:1.7;
-
-}
-
-.article-info{
-
-    display:flex;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-    color:#666;
-
-    font-size:.95rem;
-
-    font-weight:600;
-
-}
-
-.article-meta{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-    color:#666;
-    font-size:.9rem;
-    margin-bottom:25px;
-}
-
-.article-content{
-    font-size:1.1rem;
-    line-height:2;
-    color:#333;
-}
-
-.article-content p{
-    margin-bottom:25px;
-}
-
-.back-home{
-    display:inline-block;
-    margin-top:40px;
-    color:#0B3C88;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-.back-home:hover{
-    text-decoration:underline;
-}
-
-.article-header{
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    margin-bottom:20px;
-}
-
-.news-category{
-
-    display:inline-block;
-
-    background:#0b3a82;
-
-    color:white;
-
-    padding:8px 18px;
-
-    border-radius:40px;
-
-    font-weight:bold;
-
-    font-size:.85rem;
-
-}
-
-/*==========================
-SHARE BUTTONS
-==========================*/
-
-.share-section{
-    margin:45px 0;
-}
-
-.share-section h3{
-    margin-bottom:18px;
-    color:#123c84;
-}
-
-.share-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:15px;
-}
-
-.share-btn{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    padding:12px 20px;
-    border:none;
-    border-radius:10px;
-    text-decoration:none;
-    color:white;
-    cursor:pointer;
-    font-weight:bold;
-    transition:.3s;
-}
-
-.share-btn:hover{
-    transform:translateY(-3px);
-}
-
-.facebook{
-    background:#1877F2;
-}
-
-.whatsapp{
-    background:#25D366;
-}
-
-.twitter{
-    background:#111;
-}
-
-.copy-link{
-    background:#666;
-}
-
-/* ==========================
-   ARTICLE REACTIONS
-========================== */
-
-.reaction-section{
-
-    margin-top:60px;
-
-    padding:35px;
-
-    background:#f7f8fc;
-
-    border-radius:20px;
-
-    text-align:center;
-
-}
-
-.reaction-section h2{
-
-    color:#123c82;
-
-    font-size:2rem;
-
-    margin-bottom:30px;
-
-}
-
-.reaction-buttons{
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:20px;
-
-    flex-wrap:wrap;
-
-}
-
-.reaction-btn{
-
-    background:white;
-
-    border:none;
-
-    border-radius:50px;
-
-    padding:18px 35px;
-
-    font-size:1.3rem;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-    box-shadow:0 10px 25px rgba(0,0,0,.12);
-
-}
-
-.reaction-btn:hover{
-
-    transform:translateY(-4px);
-
-}
-
-.reaction-btn.active{
-
-    background:#dfefff;
-
-}
-
-.reaction-counts{
-
-    margin-top:30px;
-
-    display:flex;
-
-    justify-content:center;
-
-    gap:40px;
-
-    flex-wrap:wrap;
-
-}
-
-.reaction-counts p{
-
-    font-size:1.2rem;
-
-    font-weight:bold;
-
-}
-
-.related-image{
-    width:100%;
-    height:220px;
-    overflow:hidden;
-    border-radius:12px;
-}
-
-.related-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-    display:block;
-}
-
-.related-card{
-    width:100%;
-}
-
-.related-image{
-    height:180px;
-}
-
-.related-image{
-    height:240px;
-}
-
-/* ==========================
-   RELATED ARTICLES
-========================== */
-
-.related-section{
-    margin-top:60px;
-}
-
-.related-section h2{
-    margin-bottom:25px;
-    color:#123d82;
-    font-size:2rem;
-}
-
-.related-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
-    margin-top:20px;
-}
-
-.related-card{
-    display:block;
-    background:#fff;
-    border-radius:15px;
-    overflow:hidden;
-    text-decoration:none;
-    box-shadow:0 10px 25px rgba(0,0,0,.08);
-    transition:.3s;
-}
-
-.related-card:hover{
-    transform:translateY(-6px);
-}
-
-.related-card img{
-    width:100%;
-    height:220px;
-    object-fit:cover;
-    display:block;
-}
-
-.related-content{
-    padding:20px;
-}
-
-.related-content h3{
-    margin-top:12px;
-    color:#222;
-    line-height:1.5;
-    font-size:1.15rem;
-}
-
-.related-content .news-category{
-    display:inline-block;
-}
-
 /* ===========================
-   COMMENTS
+   READER PROFILES
 =========================== */
 
-.comment-section{
-
-    margin-top:60px;
-
-    padding:35px;
-
-    background:#f8f9fc;
-
-    border-radius:18px;
-
-}
-
-.comment-section h2{
-
-    color:#173f82;
-
-    margin-bottom:25px;
-
-}
-
-.comment-section form{
+.comment{
 
     display:flex;
 
     flex-direction:column;
 
-    gap:18px;
-
-    margin-bottom:35px;
-
-}
-
-.comment-section input{
-
-    width:100%;
-
-    padding:15px;
-
-    border:none;
-
-    border-radius:12px;
-
-    font-size:16px;
-
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
-
-}
-
-.comment-section textarea{
-
-    width:100%;
-
-    min-height:140px;
-
-    padding:15px;
-
-    resize:vertical;
-
-    border:none;
-
-    border-radius:12px;
-
-    font-size:16px;
-
-    box-shadow:0 3px 10px rgba(0,0,0,.08);
-
-}
-
-.comment-section button{
-
-    width:220px;
-
-    padding:15px;
-
-    background:#173f82;
-
-    color:white;
-
-    border:none;
-
-    border-radius:50px;
-
-    font-size:16px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    transition:.3s;
-
-}
-
-.comment-section button:hover{
-
-    background:#0f2d61;
-
-}
-
-.comment{
+    gap:15px;
 
     background:white;
 
-    border-radius:14px;
+    border-radius:18px;
 
-    padding:18px;
+    padding:22px;
 
-    margin-bottom:20px;
+    margin-bottom:22px;
 
-    box-shadow:0 6px 20px rgba(0,0,0,.08);
+    box-shadow:0 10px 25px rgba(0,0,0,.08);
 
-}
-
-.comment strong{
-
-    display:block;
-
-    color:#173f82;
-
-    font-size:18px;
+    transition:.25s;
 
 }
 
-.comment small{
+.comment:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.comment-profile{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:18px;
+
+}
+
+.comment-avatar{
+
+    width:65px;
+
+    height:65px;
+
+    border-radius:50%;
+
+    background:#123c82;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:30px;
+
+    flex-shrink:0;
+
+}
+
+.comment-user{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.comment-user strong{
+
+    font-size:20px;
+
+    color:#123c82;
+
+}
+
+.comment-badge{
+
+    display:inline-block;
+
+    margin-top:5px;
+
+    padding:5px 12px;
+
+    border-radius:50px;
+
+    background:#eef5ff;
+
+    color:#123c82;
+
+    font-size:.82rem;
+
+    font-weight:bold;
+
+    width:fit-content;
+
+}
+
+.comment-user small{
+
+    margin-top:8px;
 
     color:#777;
 
 }
 
-.comment p{
+.comment-body{
+
+    margin-left:83px;
+
+}
+
+.comment-body p{
+
+    font-size:1rem;
+
+    line-height:1.8;
+
+    color:#333;
+
+}
+
+.comment-body small{
+
+    display:block;
 
     margin-top:12px;
 
-    line-height:1.7;
+    color:#888;
 
 }
 
 /* ===========================
-   MOBILE RESPONSIVE
+   MOBILE
 =========================== */
 
-@media (max-width: 768px) {
+@media(max-width:768px){
 
-    .comment-section{
+    .comment{
 
-        padding:20px;
-
-    }
-
-    .comment-section button{
-
-        width:100%;
+        padding:18px;
 
     }
 
-}
+    .comment-profile{
 
-.reaction-grid{
+        align-items:flex-start;
 
-display:flex;
+    }
 
-flex-wrap:wrap;
+    .comment-avatar{
 
-gap:15px;
+        width:55px;
 
-justify-content:center;
+        height:55px;
 
-}
+        font-size:24px;
 
-.meme-btn{
+    }
 
-padding:14px 20px;
+    .comment-body{
 
-border:none;
+        margin-left:0;
 
-border-radius:40px;
-
-background:white;
-
-font-weight:bold;
-
-cursor:pointer;
-
-box-shadow:0 8px 18px rgba(0,0,0,.12);
-
-transition:.25s;
-
-}
-
-.meme-btn:hover{
-
-transform:translateY(-5px);
-
-}
-
-.meme-btn:active{
-
-animation:pop .25s;
-
-}
-
-@keyframes pop{
-
-0%{
-
-transform:scale(1);
-
-}
-
-50%{
-
-transform:scale(1.15);
-
-}
-
-100%{
-
-transform:scale(1);
-
-}
+    }
 
 }

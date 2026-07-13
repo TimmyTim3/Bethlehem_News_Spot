@@ -22,6 +22,16 @@ class Comment(db.Model):
         nullable=False
     )
 
+    avatar = db.Column(
+        db.String(255),
+        default="default-avatar.png"
+    )
+
+    badge = db.Column(
+        db.String(50),
+        default="Community Member"
+    )
+
     content = db.Column(
         db.Text,
         nullable=False

@@ -10,94 +10,87 @@
 
     <header class="article-header">
 
-    <span class="news-category">
-        {{ article.category }}
-    </span>
+        <span class="news-category">
+            {{ article.category }}
+        </span>
 
-    <h1 class="article-title">
-        {{ article.title }}
-    </h1>
+        <h1 class="article-title">
+            {{ article.title }}
+        </h1>
 
-    <p class="article-summary">
-        {{ article.summary }}
-    </p>
+        <p class="article-summary">
+            {{ article.summary }}
+        </p>
 
-    <div class="article-info">
+        <div class="article-info">
 
-        {% if article.created_at %}
-        <span>📅 {{ article.created_at.strftime('%d %b %Y') }}</span>
-        {% endif %}
+            {% if article.created_at %}
+            <span>📅 {{ article.created_at.strftime('%d %b %Y') }}</span>
+            {% endif %}
 
-        <span>👁 {{ article.views }} Views</span>
+            <span>👁 {{ article.views }} Views</span>
 
-    </div>
+        </div>
 
-<!-- ==========================
-     SHARE BUTTONS
-========================== -->
+    </header>
 
-<div class="share-section">
+    <!-- SHARE -->
 
-    <h3>Share this article</h3>
+    <div class="share-section">
 
-    <div class="share-buttons">
+        <h3>Share this article</h3>
 
-        <a
-            class="share-btn facebook"
-            href="https://www.facebook.com/sharer/sharer.php?u={{ request.url }}"
-            target="_blank">
+        <div class="share-buttons">
 
-            <i class="fab fa-facebook-f"></i>
+            <a
+                class="share-btn facebook"
+                href="https://www.facebook.com/sharer/sharer.php?u={{ request.url }}"
+                target="_blank">
 
-            Facebook
+                <i class="fab fa-facebook-f"></i>
+                Facebook
 
-        </a>
+            </a>
 
-        <a
-            class="share-btn whatsapp"
-            href="https://wa.me/?text={{ article.title }} {{ request.url }}"
-            target="_blank">
+            <a
+                class="share-btn whatsapp"
+                href="https://wa.me/?text={{ article.title }} {{ request.url }}"
+                target="_blank">
 
-            <i class="fab fa-whatsapp"></i>
+                <i class="fab fa-whatsapp"></i>
+                WhatsApp
 
-            WhatsApp
+            </a>
 
-        </a>
+            <a
+                class="share-btn twitter"
+                href="https://twitter.com/intent/tweet?text={{ article.title }}&url={{ request.url }}"
+                target="_blank">
 
-        <a
-            class="share-btn twitter"
-            href="https://twitter.com/intent/tweet?text={{ article.title }}&url={{ request.url }}"
-            target="_blank">
+                <i class="fab fa-x-twitter"></i>
+                X
 
-            <i class="fab fa-x-twitter"></i>
+            </a>
 
-            X
+            <button
+                class="share-btn copy-link"
+                onclick="copyArticleLink()">
 
-        </a>
+                <i class="fa-solid fa-link"></i>
+                Copy Link
 
-        <button
-            class="share-btn copy-link"
-            onclick="copyArticleLink()">
+            </button>
 
-            <i class="fa-solid fa-link"></i>
-
-            Copy Link
-
-        </button>
+        </div>
 
     </div>
-
-</div>
-
-</header>
 
     {% if article.image %}
 
     <img
         class="article-image"
         src="{{ url_for('static', filename='uploads/' + article.image) }}"
-        alt="{{ article.title }}"
-    >
+        alt="{{ article.title }}">
 
     {% endif %}
 
@@ -107,164 +100,201 @@
 
     </div>
 
-<div class="reaction-section">
+    <!-- REACTIONS -->
 
-    <h2>What do you think?</h2>
+    <div class="reaction-section">
 
-    <div class="reaction-grid">
+        <h2>What do you think?</h2>
 
-{% for reaction in reactions %}
+        <div class="reaction-grid">
 
-<button class="meme-btn">
+            {% for reaction in reactions %}
 
-{{ reaction }}
+            <button class="meme-btn">
 
-</button>
+                {{ reaction }}
 
-{% endfor %}
+            </button>
 
-</div>
+            {% endfor %}
 
-    <div class="reaction-counts">
+        </div>
 
-        <p>
-            👍 <span id="like-count">{{ article.likes }}</span>
-        </p>
-
-        <p>
-            ❤️ <span id="love-count">{{ article.loves }}</span>
-        </p>
-
-        <p>
-            😮 <span id="wow-count">{{ article.wows }}</span>
-        </p>
-
-    </div>
-
-</div>
-
-<!-- ==========================
-     RELATED ARTICLES
-========================== -->
-
-{% if related_articles %}
-
-<section class="related-section">
-
-    <h2>You May Also Like</h2>
-
-    <div class="related-grid">
-
-        {% for related in related_articles %}
-
-        <a
-            class="related-card"
-            href="{{ url_for('articles.article', article_id=related.id) }}">
-
-            {% if related.image %}
-
-            <img
-                src="{{ url_for('static', filename='uploads/' + related.image) }}"
-                alt="{{ related.title }}">
-
-            {% else %}
-
-            <img
-                src="{{ url_for('static', filename='images/default-article.jpg') }}"
-                alt="{{ related.title }}">
-
-            {% endif %}
-
-            <div class="related-content">
-
-                <span class="news-category">
-
-                    {{ related.category }}
-
-                </span>
-
-                <h3>
-
-                    {{ related.title }}
-
-                </h3>
-
-            </div>
-
-        </a>
-
-        {% endfor %}
-
-    </div>
-
-</section>
-
-{% endif %}
-
-<section class="comment-section">
-
-    <h2>Comments ({{ comments|length }})</h2>
-
-    <form
-        method="POST"
-        action="{{ url_for('articles.add_comment', article_id=article.id) }}">
-
-        <input
-            type="text"
-            name="name"
-            placeholder="Your name"
-            required>
-
-        <textarea
-            name="content"
-            rows="5"
-            placeholder="Write your comment..."
-            required></textarea>
-
-        <button type="submit">
-
-            Post Comment
-
-        </button>
-
-    </form>
-
-    {% if comments %}
-
-        {% for comment in comments %}
-
-        <div class="comment">
-
-            <strong>{{ comment.name }}</strong>
-
-            <small>
-
-                {{ comment.created_at.strftime('%d %b %Y %H:%M') }}
-
-            </small>
+        <div class="reaction-counts">
 
             <p>
+                👍 <span id="like-count">{{ article.likes }}</span>
+            </p>
 
-                {{ comment.content }}
+            <p>
+                ❤️ <span id="love-count">{{ article.loves }}</span>
+            </p>
 
+            <p>
+                😮 <span id="wow-count">{{ article.wows }}</span>
             </p>
 
         </div>
 
-        {% endfor %}
+    </div>
 
-    {% else %}
+    <!-- RELATED -->
 
-        <p>No comments yet. Be the first to comment!</p>
+    {% if related_articles %}
+
+    <section class="related-section">
+
+        <h2>You May Also Like</h2>
+
+        <div class="related-grid">
+
+            {% for related in related_articles %}
+
+            <a
+                class="related-card"
+                href="{{ url_for('articles.article', article_id=related.id) }}">
+
+                {% if related.image %}
+
+                <img
+                    src="{{ url_for('static', filename='uploads/' + related.image) }}"
+                    alt="{{ related.title }}">
+
+                {% else %}
+
+                <img
+                    src="{{ url_for('static', filename='images/default-article.jpg') }}"
+                    alt="{{ related.title }}">
+
+                {% endif %}
+
+                <div class="related-content">
+
+                    <span class="news-category">
+
+                        {{ related.category }}
+
+                    </span>
+
+                    <h3>
+
+                        {{ related.title }}
+
+                    </h3>
+
+                </div>
+
+            </a>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
 
     {% endif %}
 
-</section>
+    <!-- COMMENTS -->
+
+    <section class="comment-section">
+
+        <h2>Comments ({{ comments|length }})</h2>
+
+        <form
+            method="POST"
+            action="{{ url_for('articles.add_comment', article_id=article.id) }}">
+
+            <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required>
+
+            <textarea
+                name="content"
+                rows="5"
+                placeholder="Write your comment..."
+                required></textarea>
+
+            <button type="submit">
+
+                Post Comment
+
+            </button>
+
+        </form>
+
+        {% if comments %}
+
+            {% for comment in comments %}
+
+            <div class="comment">
+
+                <div class="comment-profile">
+
+                    <div class="comment-avatar">
+
+                        👤
+
+                    </div>
+
+                    <div class="comment-user">
+
+                        <strong>
+
+                            {{ comment.name }}
+
+                        </strong>
+
+                        <div class="comment-badge">
+
+                            {{ comment.badge }}
+
+                        </div>
+
+                        <small>
+
+                            Joined {{ comment.created_at.strftime('%b %Y') }}
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+                <div class="comment-body">
+
+                    <p>
+
+                        {{ comment.content }}
+
+                    </p>
+
+                    <small>
+
+                        🕒 {{ comment.created_at.strftime('%d %b %Y %H:%M') }}
+
+                    </small>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <p>No comments yet. Be the first to comment!</p>
+
+        {% endif %}
+
+    </section>
 
     <div class="article-footer">
 
-        <a class="back-home"
-        href="{{ url_for('home.index') }}">
+        <a
+            class="back-home"
+            href="{{ url_for('home.index') }}">
 
             ← Back to Home
 
