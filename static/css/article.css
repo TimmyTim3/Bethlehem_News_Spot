@@ -351,3 +351,163 @@ SHARE BUTTONS
 .related-content .news-category{
     display:inline-block;
 }
+
+/* ===========================
+   COMMENTS
+=========================== */
+
+.comment-section{
+
+    margin-top:60px;
+
+    padding:35px;
+
+    background:#f8f9fc;
+
+    border-radius:18px;
+
+}
+
+.comment-section h2{
+
+    color:#173f82;
+
+    margin-bottom:25px;
+
+}
+
+.comment-section form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+    margin-bottom:35px;
+
+}
+
+.comment-section input{
+
+    width:100%;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+.comment-section textarea{
+
+    width:100%;
+
+    min-height:140px;
+
+    padding:15px;
+
+    resize:vertical;
+
+    border:none;
+
+    border-radius:12px;
+
+    font-size:16px;
+
+    box-shadow:0 3px 10px rgba(0,0,0,.08);
+
+}
+
+.comment-section button{
+
+    width:220px;
+
+    padding:15px;
+
+    background:#173f82;
+
+    color:white;
+
+    border:none;
+
+    border-radius:50px;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.comment-section button:hover{
+
+    background:#0f2d61;
+
+}
+
+.comment{
+
+    background:white;
+
+    border-radius:14px;
+
+    padding:18px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.08);
+
+}
+
+.comment strong{
+
+    display:block;
+
+    color:#173f82;
+
+    font-size:18px;
+
+}
+
+.comment small{
+
+    color:#777;
+
+}
+
+.comment p{
+
+    margin-top:12px;
+
+    line-height:1.7;
+
+}
+
+/* ===========================
+   MOBILE RESPONSIVE
+=========================== */
+
+@media (max-width: 768px) {
+
+    .comment-section{
+
+        padding:20px;
+
+    }
+
+    .comment-section button{
+
+        width:100%;
+
+    }
+
+}

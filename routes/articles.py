@@ -16,6 +16,11 @@ from services.article_service import (
 
 from models import db
 
+from services.comment_service import (
+    get_comments_for_article,
+    create_comment,
+)
+
 articles_bp = Blueprint(
     "articles",
     __name__,
@@ -33,6 +38,8 @@ def article(article_id):
     increase_views(article)
 
     related_articles = get_related_articles(article)
+
+    comments = get_comments_for_article(article.id)
 
     return render_template(
         "article.html",
@@ -59,10 +66,11 @@ def search():
     articles = search_articles(search_term)
 
     return render_template(
-        "search_results.html",
-        search_term=search_term,
-        articles=articles,
-    )
+    "article.html",
+    article=article,
+    related_articles=related_articles,
+    comments=comments,
+)
 
 @articles_bp.route("/article/<int:article_id>/react", methods=["POST"])
 def react(article_id):
@@ -93,3 +101,19 @@ def react(article_id):
         "loves": article.loves,
         "wows": article.wows
     })
+
+@articles_bp.route("/article/<int:article_id>/comment", methods=["POST"])
+def add_comment(article_id):
+
+    article = get_article_by_id(article_id)
+
+    if article is None:
+        abort(404)
+
+    name = request.form.get("name")
+    content = request.form.get("content")
+
+    if name and content:
+        create_comment(article_id, name, content)
+
+    return article(article_id)
