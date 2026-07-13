@@ -1,0 +1,27 @@
+{% extends "admin/dashboard.html" %}
+
+{% block admin_content %}
+<h2>Pending Submissions</h2>
+
+{% for sub in submissions %}
+<div class="card" style="border: 1px solid #ccc; padding: 15px; margin-bottom: 10px;">
+    <h3>{{ sub.headline }}</h3>
+    <p><strong>From:</strong> {{ sub.name }} ({{ sub.email }})</p>
+    <p>{{ sub.content[:100] }}...</p>
+    
+    <div class="actions">
+        <a href="{{ url_for('admin.edit_submission_route', submission_id=sub.id) }}" class="btn">Edit</a>
+        
+        <form action="{{ url_for('admin.approve_submission_route', submission_id=sub.id) }}" method="POST" style="display:inline;">
+            <button type="submit" style="background:green; color:white;">Publish</button>
+        </form>
+
+        <form action="{{ url_for('admin.reject_submission_route', submission_id=sub.id) }}" method="POST" style="display:inline;">
+            <button type="submit" style="background:red; color:white;">Reject</button>
+        </form>
+    </div>
+</div>
+{% else %}
+<p>No new submissions.</p>
+{% endfor %}
+{% endblock %}

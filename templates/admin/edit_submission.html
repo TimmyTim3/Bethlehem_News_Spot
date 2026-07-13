@@ -1,0 +1,17 @@
+{% extends "admin/dashboard.html" %}
+
+{% block admin_content %}
+<h2>Edit Submission</h2>
+<form method="POST">
+    <div style="margin-bottom: 15px;">
+        <label>Headline</label><br>
+        <input type="text" name="headline" value="{{ submission.headline }}" required style="width: 100%;">
+    </div>
+    <div style="margin-bottom: 15px;">
+        <label>Story Content</label><br>
+        <textarea name="content" rows="10" required style="width: 100%;">{{ submission.content }}</textarea>
+    </div>
+    <button type="submit" style="padding: 10px; background: blue; color: white;">Save Changes</button>
+    <a href="{{ url_for('admin.submissions') }}">Cancel</a>
+</form>
+{% endblock %}
