@@ -32,6 +32,23 @@ class Comment(db.Model):
         default=datetime.utcnow
     )
 
+    # Profile expansion features
+    avatar = db.Column(
+        db.String(255),
+        default="default-avatar.png"
+    )
+
+    badge = db.Column(
+        db.String(50),
+        default="Community Member"
+    )
+
+    # Phase 6.8.2: Like system
+    likes = db.Column(
+        db.Integer,
+        default=0
+    )
+
     article = db.relationship(
         "Article",
         backref=db.backref(

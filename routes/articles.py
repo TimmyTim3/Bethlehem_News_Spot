@@ -22,6 +22,7 @@ from services.article_service import (
 from services.comment_service import (
     get_comments_for_article,
     create_comment,
+    like_comment,
 )
 
 from services.reaction_service import get_reactions
@@ -192,3 +193,9 @@ def add_comment(article_id):
             article_id=article_id,
         )
     )
+
+
+@articles_bp.route("/article/<int:article_id>/comment/<int:comment_id>/like", methods=["POST"])
+def like_comment_route(article_id, comment_id):
+    like_comment(comment_id)
+    return redirect(url_for("articles.article", article_id=article_id))

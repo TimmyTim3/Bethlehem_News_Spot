@@ -249,6 +249,17 @@
 
             </p>
 
+            <!-- Like Button -->
+            <form 
+                action="{{ url_for('articles.like_comment_route', article_id=article.id, comment_id=comment.id) }}" 
+                method="POST" 
+                style="display:inline;">
+                
+                <button type="submit" style="background:none; border:none; cursor:pointer; padding:0; color:blue;">
+                    👍 {{ comment.likes }}
+                </button>
+            </form>
+
         </div>
 
         {% endfor %}

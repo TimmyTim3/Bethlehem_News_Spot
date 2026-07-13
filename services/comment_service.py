@@ -12,7 +12,6 @@ def get_comments_for_article(article_id):
 
 
 def create_comment(article_id, name, content):
-
     comment = Comment(
         article_id=article_id,
         name=name,
@@ -22,6 +21,17 @@ def create_comment(article_id, name, content):
     db.session.add(comment)
     db.session.commit()
 
+    return comment
+
+
+def like_comment(comment_id):
+    """
+    Increments the like count for a specific comment.
+    """
+    comment = Comment.query.get(comment_id)
+    if comment:
+        comment.likes += 1
+        db.session.commit()
     return comment
 
 
