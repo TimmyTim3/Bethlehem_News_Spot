@@ -14,6 +14,10 @@ from services.article_service import (
     get_related_articles,
 )
 
+from services.comment_service import (
+    get_comments_for_article,
+)
+
 from models import db
 
 articles_bp = Blueprint(
@@ -34,11 +38,14 @@ def article(article_id):
 
     related_articles = get_related_articles(article)
 
+    comments = get_comments_for_article(article.id)
+
     return render_template(
-        "article.html",
-        article=article,
-        related_articles=related_articles,
-    )
+    "article.html",
+    article=article,
+    related_articles=related_articles,
+    comments=comments,
+)
 
 
 @articles_bp.route("/category/<category>")
