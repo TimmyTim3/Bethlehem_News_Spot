@@ -1,3 +1,4 @@
+from models.comment import Comment
 from routes.admin import admin_bp
 from flask import Flask
 from config import Config
