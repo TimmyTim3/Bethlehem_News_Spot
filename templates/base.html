@@ -7,7 +7,7 @@
 
     <!-- Main Styles -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
-    
+
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
@@ -50,7 +50,7 @@ href="{{ url_for('static', filename='css/article.css') }}">
         Search
     </button>
 
-</form>                       
+</form>
 
             </div>
 
@@ -83,6 +83,14 @@ href="{{ url_for('static', filename='css/article.css') }}">
             <a href="/weather">Weather</a>
 
             <a href="/contact">Contact</a>
+
+            <!-- Authentication Links -->
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('admin.dashboard') }}" style="color: #003366; font-weight: bold;">Admin</a>
+                <a href="{{ url_for('auth.logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('auth.login') }}">Login</a>
+            {% endif %}
 
         </nav>
 
