@@ -145,6 +145,64 @@
 
 </div>
 
+<!-- ==========================
+     RELATED ARTICLES
+========================== -->
+
+{% if related_articles %}
+
+<section class="related-section">
+
+    <h2>You May Also Like</h2>
+
+    <div class="related-grid">
+
+        {% for related in related_articles %}
+
+        <a
+            class="related-card"
+            href="{{ url_for('articles.article', article_id=related.id) }}">
+
+            {% if related.image %}
+
+            <img
+                src="{{ url_for('static', filename='uploads/' + related.image) }}"
+                alt="{{ related.title }}">
+
+            {% else %}
+
+            <img
+                src="{{ url_for('static', filename='images/default-article.jpg') }}"
+                alt="{{ related.title }}">
+
+            {% endif %}
+
+            <div class="related-content">
+
+                <span class="news-category">
+
+                    {{ related.category }}
+
+                </span>
+
+                <h3>
+
+                    {{ related.title }}
+
+                </h3>
+
+            </div>
+
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+{% endif %}
+
     <div class="article-footer">
 
         <a class="back-home"
